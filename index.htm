@@ -4,6 +4,18 @@
 <meta charset="utf-8">
 <title>Get Visitor IP using JavaScript!</title>
 <style type="text/css">
+	body {
+	font-family:Verdana, sans-seriff, seriff;
+	font-size:1em;
+	}
+	ol {
+	width:auto;
+	border:0px #ffffc0 dotted;
+	}	
+	ol li {
+	background-color:#ffffc0;
+	line-height:1.6em;
+	}
 
 </style>
 <script type="text/javascript">
@@ -19,11 +31,12 @@
 </header>
 
 <section>
-	<h2>How to</h2>
+	<h2>How to, HTML</h2>
 	<aside>
 		<ol>
 			<li>Import Server-side Perl Script as JavaScript source into &lt;head&gt; part of your HTML file:  &lt;script src="http://ns03.bislinks.com/git-repos/ip/index.cgi"&gt;&lt;/script&gt;</l>
 			<li>&lt;script type="text/javascript"&gt;document.write('Your ip is ' +bislinks_ip+ ' ');	&lt;/script&gt;</li>
+			<li>See the source of Perl/CGI program: <a href="index.cgi?source">Source</a>.  You wouldn't need it unless you want to host it yourself on your own server</li>
 		</ol>
 	</aside>
 </section>
@@ -31,7 +44,7 @@
 <footer>
 	<h2>Output/Result</h2>
 	<script type="text/javascript">
-		document.write('Your ip is ' +bislinks_ip+ ' ');
+		document.write('Your ip is ' +bl_user_ip+ ' ');
 	</script>
 </footer>
 
