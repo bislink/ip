@@ -26,7 +26,7 @@ if (param) {
 <li></li>
 <li>print header('text/javascript');</li>
 <li></li>
-<li>print qq{ var bl_user_ip = '&lt;a href="http://bislinks.com" title="Your IP is $ip.  Powered by BISLINKS.com" style="text-decoration:none;"&gt;$ip&lt;/a&gt;'; };</li>
+<li>print qq{ var bl_user_ip = '&lt;a href="http://bislinks.com" title="Your IP is \$ip.  Powered by BISLINKS.com" style="text-decoration:none;"&gt;\$ip&lt;/a&gt;'; };</li>
 </ol>
 <a href="index.cgi" title="Go back">Back</a> };
 		my $meta = qq{<meta charset="utf-8"/>};
