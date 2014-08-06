@@ -11,13 +11,11 @@ my $q = new CGI;
 use strict;
 use CGI::Carp qw/fatalsToBrowser/;
 
-my $ip = $ENV{'REMOTE_ADDR'};
+my $get_source = `cat $0`;
 
-if (param) {
-	my $qry_str = $ENV{'QUERY_STRING'};
-	if ($qry_str eq 'source') {
-		
-		my $source = qq{<ol>
+my $source;
+		$source .= qq{
+<ol>
 <li>#!/usr/bin/perl</li>
 <li></li>
 <li>use CGI qw(:standard);</li>
@@ -28,7 +26,14 @@ if (param) {
 <li></li>
 <li>print qq{ var bl_user_ip = '&lt;a href="http://bislinks.com" title="Your IP is \$ip.  Powered by BISLINKS.com" style="text-decoration:none;"&gt;\$ip&lt;/a&gt;'; };</li>
 </ol>
-<a href="index.cgi" title="Go back">Back</a> };
+};
+
+my $ip = $ENV{'REMOTE_ADDR'};
+
+if (param) {
+	my $qry_str = $ENV{'QUERY_STRING'};
+	if ($qry_str eq 'source') {
+
 		my $meta = qq{<meta charset="utf-8"/>};
 		my $header = sprintf header();
 		$header =~ s!charset=.*!charset=utf-8!;
@@ -36,16 +41,17 @@ if (param) {
 		$header =~ s{<!DOCTYPE.*>}{<!DOCTYPE html>}s;
 		$header .= qq{<html>\n<head>\n<title>Source</title>\n$meta\n</head>\n<body>\n};
 		
-		my $get_source = `cat $0`;
+		
 		print $header;
 		#print qq{<textarea rows="15" cols="60">} . escapeHTML($get_source) . qq{</textarea>}, end_html();
 		print $source, end_html();
 	}
 
 } else {
-
-print header('text/javascript');
-print qq{ var bl_user_ip = '<a href="http://bislinks.com" title="Your IP is $ip.  Powered by BISLINKS.com" style="text-decoration:none;">$ip</a>'; 
-};
+escapeHTML($source);
+#print header('text/javascript');
+print header('text/html');
+#print qq{var bl_user_ip = '<a href="http://bislinks.com" title="Your IP is $ip.  Powered by BISLINKS.com" style="text-decoration:none;">$ip</a>'; document.write('<textarea rows="15" cols="60">$source</textarea>');};
+print $source;
 
 }
