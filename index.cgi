@@ -17,13 +17,13 @@ my $source;
 		$source .= qq{
 <ol>
 <li>#!/usr/bin/perl</li>
-<li></li>
+
 <li>use CGI qw(:standard);</li>
-<li></li>
+
 <li>my \$ip = \$ENV{'REMOTE_ADDR'};</li>
-<li></li>
+
 <li>print header('text/javascript');</li>
-<li></li>
+
 <li>print qq{ var bl_user_ip = '&lt;a href="http://bislinks.com" title="Your IP is \$ip.  Powered by BISLINKS.com" style="text-decoration:none;"&gt;\$ip&lt;/a&gt;'; };</li>
 </ol>
 };
@@ -32,6 +32,7 @@ my $ip = $ENV{'REMOTE_ADDR'};
 
 if (param) {
 	my $qry_str = $ENV{'QUERY_STRING'};
+	
 	if ($qry_str eq 'source') {
 
 		my $meta = qq{<meta charset="utf-8"/>};
@@ -45,7 +46,50 @@ if (param) {
 		print $header;
 		#print qq{<textarea rows="15" cols="60">} . escapeHTML($get_source) . qq{</textarea>}, end_html();
 		print $source, end_html();
-	}
+	} elsif ( $qry_str eq 'ip') {
+		print header(-type=>'text/javascript');
+		print qq{var bl_user_ip = '<a href="http://$ip" title="Your IP is $ip. Powered by BISLINKS.com/free/ip" style="text-decoration:none;">$ip</a>'; };
+	
+	} elsif ($qry_str eq 'ajax') {
+		print header(-type=>'text/html');
+		print qq{$ip};
+	} elsif ($qry_str eq 'xml') {
+		my $out;
+		for (keys %ENV) {
+			next if $_ =~ /HTTP_COOKIE/;
+			$out .= qq{<$_>$ENV{"$_"}</$_>} if $_;	#<environment>$out</environment>
+		}
+		print header(-type=>'application/xml');
+		print qq{<?xml version="1.0" encoding="UTF-8"?>
+<ip>
+	<instructions>http://bislinks.com/free/ip/instructions.htm</instructions>
+	<address>$ip</address>
+</ip>
+};
+		
+	} elsif ($qry_str eq 'json') {
+		print header(-type=>'text/javascript');
+		my $out = qq~{ "userIP": 
+	[
+		{"Instructions":"http://bislinks.com/free/ip/instructions.htm"},
+		{"ViaAJAX":"http://bislinks.com/free/ip/index.cgi?ajax"},
+		{"AsXML":"http://bislinks.com/free/ip/index.cgi?xml"},
+		{"ViaJS":"http://bislinks.com/free/ip/index.cgi?js"},
+		{"YourIP":"$ip"}
+	]
+}
+~;
+
+print qq~{
+	"Instructions":"http://bislinks.com/free/ip/instructions.htm",
+	"ViaAJAX":"http://bislinks.com/free/ip/index.cgi?ajax",
+	"AsXML":"http://bislinks.com/free/ip/index.cgi?xml",
+	"ViaJS":"http://bislinks.com/free/ip/index.cgi?js",
+	"YourIP":"$ip"
+}
+~;
+
+	}	# end json 
 
 } else {
 escapeHTML($source);
