@@ -56,56 +56,42 @@ h2 {
 
 <div class="container">
 
-<header><h1>Get user's IP</h1>
-</header>
+	<header><h1>Get user's IP</h1>
+	</header>
+	
+	<section><h2>Instructions</h2>
+		<table class="table table-striped table-bordered table-hover table-responsive">
+		<thead><tr><th>Easy to install, in just TWO steps</th></tr></thead>
+		<tbody>
+			<tr><td>Import Server-side Perl Script as JavaScript source into &lt;head&gt; part of your HTML file:  &lt;script src="http://bislinks.com/free/ip/index.cgi?ip"&gt;&lt;/script&gt; </td></tr>
+			<tr><td>&lt;script type="text/javascript"&gt;document.write('Your IP is ' +bl_user_ip+ ' ');	&lt;/script&gt;</td></tr>
+			<tr><td>See the source of Perl/CGI program: <a href="index.cgi?source">Source</a>; You wouldn't need it unless you want to host it yourself on your own server</td></tr>
+		</tbody>
+		</table>
+	</section>
 
-<section><h2>Instructions</h2>
-	<table class="table table-striped table-bordered table-hover table-responsive">
-	<thead><tr><th>Easy to install, in just TWO steps</th></tr></thead>
-	<tbody>
-		<tr><td>Import Server-side Perl Script as JavaScript source into &lt;head&gt; part of your HTML file:  &lt;script src="http://bislinks.com/free/ip/index.cgi?ip"&gt;&lt;/script&gt; </td></tr>
-		<tr><td>&lt;script type="text/javascript"&gt;document.write('Your ip is ' +bl_user_ip+ ' ');	&lt;/script&gt;</td></tr>
-		<tr><td>See the source of Perl/CGI program: <a href="index.cgi?source">Source</a>; You wouldn't need it unless you want to host it yourself on your own server</td></tr>
-	</tbody>
-	</table>
-</section>
-
-<section><h2>Using simple JavaScript</h2>
-	<script type="text/javascript">
-		document.write('Your ip is ' +bl_user_ip+ ' ');
-	</script>
-</section>
-
-
-<section><h2>Using AJAX</h2>
-	<div id="ajax_ip">
-		
+	<section><h2>Using simple JavaScript</h2>
+		<script type="text/javascript">
+			document.write('Your IP Number is ' +bl_user_ip+ ' ');
+		</script>
+	</section>
+	
+	
+	<section><h2>Using AJAX</h2>
+		<div id="ajax_ip">
+			
+		</div>
+	</section>
+	
+	<div id="xml"><h2>As XML, Parsed</h2>
+		<div></div>
+		<p></p>
 	</div>
-</section>
-
-<div id="xml"><h2>As XML, Parsed</h2>
-	<div></div>
-	<p></p>
-</div>
-
-
-<div id="json"><h2>As JSON, Parsed</h2>
-	<div></div>
-</div>
-
-<p id="demo"></p>
-
-<script type="text/javascript">
-var text = '{"name":"John Johnson","street":"Oslo West 16","phone":"555 1234567"}'
- 
-var obj = JSON.parse(text);
-
-//document.getElementById("demo").innerHTML =
- //obj.name + "<br>" +
-//obj.street + "<br>" +
-//obj.phone;
-</script>
-
+	
+	
+	<div id="json"><h2>As JSON, Parsed</h2>
+		<div></div>
+	</div>
 
 </div><!--end container-->
 

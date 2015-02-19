@@ -2,7 +2,7 @@
 
 =head1 Provide IP for JavaScript
 Usage: 
-1. <script src="http://bislinks.com/git-repos/ip/index.cgi"></script> 
+1. <script src="http://bislinks.com/free/ip/index.cgi"></script> 
 2. <script type="text/javascript">document.write('Your IP is ' + bl_user_ip+ ''); </script>
 =cut
 
@@ -10,12 +10,14 @@ use CGI qw(:standard :escape :escapeHTML);
 my $q = new CGI;
 use strict;
 use CGI::Carp qw/fatalsToBrowser/;
+use lib '../../../cgi-bin/CUSTOM_PM';
+use BISLINKS::HTML5::html5;
 
 my $get_source = `cat $0`;
 
 my $source;
 		$source .= qq{
-<ol>
+<ol style="font-size:2em;">
 <li>#!/usr/bin/perl</li>
 
 <li>use CGI qw(:standard);</li>
@@ -94,8 +96,12 @@ print qq~{
 } else {
 escapeHTML($source);
 #print header('text/javascript');
-print header('text/html');
+print &header_html5('Perl source code for getting user IP','topNavBar'),
+qq~<div id="main" class="container">~;
 #print qq{var bl_user_ip = '<a href="http://bislinks.com" title="Your IP is $ip.  Powered by BISLINKS.com" style="text-decoration:none;">$ip</a>'; document.write('<textarea rows="15" cols="60">$source</textarea>');};
-print $source;
+print $source,
+qq~<div style="margin:0 0 10em 0;"></div>~,
+&body_html5(),
+;
 
 }
