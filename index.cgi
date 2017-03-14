@@ -30,7 +30,7 @@ my $source;
 </ol>
 };
 
-my $ip = $ENV{'REMOTE_ADDR'};
+my $ip = $ENV{'REMOTE_ADDR'} || "";
 
 if (param) {
 	my $qry_str = $ENV{'QUERY_STRING'};
