@@ -37,7 +37,7 @@ if (param) {
 	
 	if ($qry_str eq 'source') {
 
-		my $meta = qq{<meta charset="utf-8"/>};
+		my $meta = qq{<meta charset="utf-8">};
 		my $header = sprintf header();
 		$header =~ s!charset=.*!charset=utf-8!;
 		$header .= start_html(-title => "Source");
