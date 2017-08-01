@@ -52,7 +52,7 @@ h2 {
 }
 </style>
 
-<script type="text/javascript" src="ip.cgi?ip"></script>
+<script type="text/javascript" src="ip.cgi?js"></script>
 
 </head>
 
@@ -70,9 +70,9 @@ h2 {
 		<table class="table table-striped table-bordered table-hover table-responsive">
 		<thead><tr><th>Easy to install, in just TWO steps</th></tr></thead>
 		<tbody>
-			<tr><td>Import Server-side Perl Script as JavaScript source into &lt;head&gt; part of your HTML file:  &lt;script src="<b>//bislinks.com/free/ip/index.cgi?ip</b>"&gt;&lt;/script&gt; </td></tr>
-			<tr><td>&lt;script type="text/javascript"&gt;document.write('Your IP is ' +bl_user_ip+ '');	&lt;/script&gt;</td></tr>
-			<tr><td>See the source of Perl/CGI program: <a href="index.cgi?source">Source</a>; You wouldn't need it unless you want to host it yourself on your own server</td></tr>
+			<tr><td>Import Server-side Perl Script as JavaScript source into &lt;head&gt; part of your HTML file:  &lt;script src="<b>ip.cgi?js</b>"&gt;&lt;/script&gt; </td></tr>
+			<tr><td>&lt;script type="text/javascript"&gt;document.write('Your IP is ' +user_ip+ '');	&lt;/script&gt;</td></tr>
+			<tr><td>See the source of Perl/CGI program: <a href="ip.cgi?source">Source</a>; You wouldn't need it unless you want to host it yourself on your own server</td></tr>
 		</tbody>
 		</table>
 	</section>
@@ -125,7 +125,7 @@ function show_ajax_ip(data,status) {
 }
 
 $.ajax({
-url: './index.cgi?ajax',
+url: './ip.cgi?ajax',
 statusCode: {
 		404: function() {
 	      	$('#ajax_ip').append('<p>Page not found</p>');
@@ -154,7 +154,7 @@ function getParseXML(xml,status) {
 }
 
 $.ajax({
-url: './index.cgi?xml',
+url: './ip.cgi?xml',
 type: 'GET',
 dataType: "xml",
 
@@ -182,7 +182,7 @@ statusCode: {
 
 // PARSE JSON USING AJAX!
 $.ajax({
-url: './index.cgi?json',
+url: './ip.cgi?json',
 type: 'GET',
 ////data: { get_param: 'value' }, 
 dataType: 'json',
@@ -211,7 +211,7 @@ statusCode: {
 });	// end parse json via ajax
 
 // using method getJSON
-$.getJSON("./index.cgi?json",function(result){
+$.getJSON("./ip.cgi?json",function(result){
      $.each(result, function(i, field){
        //$("#json div").append('' +i+ ' ' + field + '');		//OK
      });
