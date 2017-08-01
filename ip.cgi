@@ -25,7 +25,7 @@ $source = qq{
 <li>use warnings;</li>
 <li>my \$ip = \$ENV{'REMOTE_ADDR'} or "";</li>
 <li>print "Content-type: text/javascript \n\n</li>
-<li>print qq{ var user_ip = "$ip"};</li>
+<li>print qq{ var user_ip = "\$ip"};</li>
 </ol>
 };
 
